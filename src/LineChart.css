@@ -5,3 +5,9 @@
 .linechart_axis {
   stroke: #bdc3c7;
 }
+
+.linechart_area {
+  fill: #2ecc71;
+  stroke: none;
+  opacity: .4;
+}

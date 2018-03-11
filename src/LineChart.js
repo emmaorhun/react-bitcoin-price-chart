@@ -61,7 +61,6 @@ class LineChart extends Component {
 
     return (
 
-      //g is an
       <g className="linechart_axis">
         <line
           x1={this.getSvgX(minX)} y1={this.getSvgY(minY)}
@@ -70,8 +69,25 @@ class LineChart extends Component {
           x1={this.getSvgX(minX)} y1={this.getSvgY(minY)}
           x2={this.getSvgX(minX)} y2={this.getSvgY(maxY)} />
       </g>
-  );
+    );
   }
+
+  makeArea() {
+    const {data} = this.props;
+
+    let pathD = "M " + this.getSvgX(data[0].x) + " " + this.getSvgY(data[0].y) + " ";
+
+    data.map((point, i) => {
+      pathD += "L " + this.getSvgX(point.x) + " " + this.getSvgY(point.y) + " ";
+    });
+
+
+    pathD += "L " + this.getSvgX(this.getMaxX()) + " " + this.getSvgY(this.getMinY()) + " "
+        + "L " + this.getSvgX(this.getMinX()) + " " + this.getSvgY(this.getMinY()) + " ";
+
+    return <path className="linechart_area" d={pathD} />
+}
+
 
    render() {
 
@@ -82,6 +98,7 @@ class LineChart extends Component {
        <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
          {this.makePath()}
          {this.makeAxis()}
+         {this.makeArea()}
        </svg>
 
      );
