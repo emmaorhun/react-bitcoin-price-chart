@@ -60,6 +60,8 @@ class LineChart extends Component {
     const minY = this.getMinY(), maxY = this.getMaxY();
 
     return (
+
+      //g is an
       <g className="linechart_axis">
         <line
           x1={this.getSvgX(minX)} y1={this.getSvgY(minY)}
